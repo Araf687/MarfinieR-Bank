@@ -1,3 +1,18 @@
+//update balance
+function updateBalance(number,flag)
+{
+    var currentBalance=document.getElementById("balanceValue").innerText;
+    var balanceInNumber=parseFloat(currentBalance);
+    if(flag==1){
+        totalBalance=balanceInNumber + number;
+
+       }
+    else{
+        totalBalance=balanceInNumber - number;
+    
+    }
+    return totalBalance;
+}
 //login button event handeler
 document.getElementById('login').addEventListener('click',function(){
     var email=document.getElementById('email').value;
@@ -10,10 +25,10 @@ document.getElementById('login').addEventListener('click',function(){
         document.getElementById('transaction-area').style.display='block';
     }
     else{
-        alert("You entered wrong email or password.");
+        alert("You have entered wrong email or password.");
     }
     
-    });
+});
 
 //deposit button event handler
 var depositBtn=document.getElementById('addDeposit');
@@ -25,19 +40,15 @@ depositBtn.addEventListener("click",function(){
     valueInNumber=parseFloat(currentDeposit);
     totalDeposit=valueInNumber+amountInNumber;
 
-    var currentBalance=document.getElementById("balanceValue").innerText;
-    var balanceInNumber=parseFloat(currentBalance);
-    totalBalance=balanceInNumber + amountInNumber;
-    
+    var flag=1;
+    var totalBalance=updateBalance(amountInNumber,flag);
 
     document.getElementById("depositValue").innerText=totalDeposit;
     document.getElementById("balanceValue").innerText=totalBalance;
 
     document.getElementById('depositAmount').value="";
-
-
-
 });
+
 //withdraw button event handler
 var withdrawBtn=document.getElementById('withdraws');
 withdrawBtn.addEventListener("click",function(){
@@ -50,14 +61,10 @@ withdrawBtn.addEventListener("click",function(){
     totalWithdraw=withdrawAmountNumber+currentWithdrawNumber;
     document.getElementById('withdrawValue').innerText=totalWithdraw;
 
-    var currentBalance=document.getElementById("balanceValue").innerText;
-    var balanceInNumber=parseFloat(currentBalance);
-    updateBalance=balanceInNumber - withdrawAmountNumber;
-    document.getElementById("balanceValue").innerText=updateBalance;
-
+    var flag=2;
+    var totalBalance=updateBalance(withdrawAmountNumber,flag);
+ 
+    document.getElementById("balanceValue").innerText=totalBalance;
     document.getElementById("withdrawAmount").value="";
-
-
-
 
 });
